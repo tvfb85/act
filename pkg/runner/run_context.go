@@ -490,7 +490,7 @@ func (rc *RunContext) runsOnImage(ctx context.Context) string {
 	job := rc.Run.Job()
 
 	if job.RunsOn() == nil {
-		common.Logger(ctx).Errorf("'runs-on' key not defined in %s", rc.String())
+		common.Logger(ctx).Errorf("the 'runs-on' key is not defined in %s", rc.String())
 	}
 
 	for _, runnerLabel := range job.RunsOn() {
@@ -541,7 +541,7 @@ func (rc *RunContext) isEnabled(ctx context.Context) (bool, error) {
 	img := rc.platformImage(ctx)
 	if img == "" {
 		if job.RunsOn() == nil {
-			l.Errorf("'runs-on' key not defined in %s", rc.String())
+			l.Errorf("the 'runs-on' key not defined in %s", rc.String())
 		}
 
 		for _, runnerLabel := range job.RunsOn() {

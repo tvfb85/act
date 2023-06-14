@@ -292,7 +292,11 @@ func (j *Job) RunsOn() []string {
 		if !decodeNode(j.RawRunsOn, &val) {
 			return nil
 		}
-		return val["group"]
+		var keys []string
+		for k := range val {
+			keys = append(keys, k)
+		}
+		return keys
 	}
 	return nil
 }
