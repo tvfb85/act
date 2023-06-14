@@ -287,6 +287,12 @@ func (j *Job) RunsOn() []string {
 			return nil
 		}
 		return val
+	case yaml.MappingNode:
+		var val map[string]interface{}
+		if !decodeNode(j.RawRunsOn, &val) {
+			return nil
+		}
+		return val["group"]
 	}
 	return nil
 }
